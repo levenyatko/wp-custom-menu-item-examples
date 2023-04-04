@@ -9,5 +9,10 @@
     if ( ! defined('MENU_TESTS_PLUGIN_DIR') ) {
         define( 'MENU_TESTS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
     }
-    
+
+    if ( ! defined('MENU_TESTS_PLUGIN_DIR_URI') ) {
+        define( 'MENU_TESTS_PLUGIN_DIR_URI', plugin_dir_url( __FILE__ ) );
+    }
+
     require_once MENU_TESTS_PLUGIN_DIR . '/01-add-archive-menu-item-type/example.php';
+    require_once MENU_TESTS_PLUGIN_DIR . '/02-add-menu-item-without-link/example.php';
