@@ -16,3 +16,4 @@
 
     require_once MENU_TESTS_PLUGIN_DIR . '/01-add-archive-menu-item-type/example.php';
     require_once MENU_TESTS_PLUGIN_DIR . '/02-add-menu-item-without-link/example.php';
+    require_once MENU_TESTS_PLUGIN_DIR . '/03-add-custom-fields-to-item/example.php';
