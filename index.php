@@ -1,7 +1,10 @@
 <?php
     /**
-     * Plugin Name: WP custom menu item examples
-     * Description: There are few examples how we can add custom menu item types to the navigation menu
+     * Plugin Name: WP menu advanced examples
+     * Description: There are few examples how to can add custom menu item types or custom fields to a navigation menu
+     * Author: Daria Levchenko
+     * Author URI: https://github.com/levenyatko
+     * Version: 0.0.1
      */
 
     defined( 'ABSPATH' ) || exit;
