@@ -12,6 +12,8 @@
 
     add_action( 'wp_nav_menu_item_custom_fields', 'example_03_custom_menu_item_fields', 10, 5 );
     add_action( 'wp_update_nav_menu_item', 'example_03_save_custom_menu_fields', 10, 2 );
+    // hide other custom script if checkbox unchecked
+    add_action('in_admin_footer', 'example_03_add_script_to_hide_fields');
     // display
     add_filter('nav_menu_item_title', 'example_03_maybe_show_item_icon', 10, 4);
 
@@ -78,7 +80,7 @@
                     $text_value = $item_settings[ $text_field_name ];
                 }
             ?>
-            <p class="field-icon-<?php echo $text_field_name; ?> description description-wide">
+            <p class="field-icon-<?php echo $text_field_name; ?> ex3-fields description description-wide">
                 <label for="<?php echo esc_attr($field_id); ?>">
                     <?php _e('Icon class'); ?><br>
                     <input type="text"
@@ -95,7 +97,7 @@
                 $field_id = sprintf($field_id_pattern, $field_name, $radio_field_name, $item_id);
                 $position = ( empty($item_settings[ $radio_field_name ]) ) ? 'before' : $item_settings[ $radio_field_name ];
             ?>
-            <p class="field-icon-<?php echo $radio_field_name; ?> description">
+            <p class="field-icon-<?php echo $radio_field_name; ?> ex3-fields description">
                 <?php _e('Position'); ?><br>
                 <?php foreach ($positions as $i => $pos) { ?>
                     <label for="<?php echo esc_attr($field_id . '-' . $i); ?>">
@@ -115,7 +117,7 @@
                 $field_id = sprintf($field_id_pattern, $field_name, $select_field_name, $item_id);
                 $style = ( empty($item_settings[ $select_field_name ]) ) ? 'default' : $item_settings[ $select_field_name ];
             ?>
-            <p class="field-icon-<?php echo $select_field_name; ?> description description-wide">
+            <p class="field-icon-<?php echo $select_field_name; ?> ex3-fields description description-wide">
                 <label for="<?php echo esc_attr($field_id); ?>">
                     <?php _e('Icon style'); ?><br>
                     <select id="<?php echo esc_attr($field_id); ?>"
@@ -149,6 +151,40 @@
              && isset($_POST[ $field_name ][ $menu_item_db_id ])
         ) {
             update_post_meta($menu_item_db_id, '_menu_icon_settings', $_POST[ $field_name ][ $menu_item_db_id ]);
+        }
+    }
+
+    function example_03_add_script_to_hide_fields()
+    {
+        //you can check if this is the right page
+        $screen = get_current_screen();
+        if ( 'nav-menus' == $screen->id ) {
+            ?>
+            <script type='text/javascript'>
+                jQuery(document).ready( function(){
+
+                    jQuery('.field-icon-display input[type=checkbox]').each(function (){
+                        show_or_hide_icon_settings(jQuery(this), jQuery(this).is(':checked'));
+                    });
+
+                    jQuery('#menu-to-edit').on('click', '.field-icon-display input[type=checkbox]', function (){
+                        show_or_hide_icon_settings(jQuery(this), jQuery(this).is(':checked'));
+                    });
+
+                    function show_or_hide_icon_settings($checkbox, display) {
+                        let $fieldsList = $checkbox.closest('.custom-field-fullw').find('.ex3-fields');
+
+                        if ( display ) {
+                            $fieldsList.show();
+                        } else {
+                            $fieldsList.hide();
+                        }
+
+                    }
+
+                });
+            </script>
+            <?php
         }
     }
 
