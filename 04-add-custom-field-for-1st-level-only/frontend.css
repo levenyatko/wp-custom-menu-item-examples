@@ -1,0 +1,15 @@
+.menu-item-has-children.item-submenu-style--2-cols > ul,
+.menu-item-has-children.item-submenu-style--3-cols > ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.item-submenu-style--2-cols > ul > li {
+    flex: 50%;
+}
+
+.item-submenu-style--3-cols > ul > li {
+    flex: 33.33%;
+}
