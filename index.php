@@ -22,3 +22,4 @@
     require_once MENU_TESTS_PLUGIN_DIR . '/03-add-custom-fields-to-item/example.php';
     require_once MENU_TESTS_PLUGIN_DIR . '/04-add-custom-field-for-1st-level-only/example.php';
     require_once MENU_TESTS_PLUGIN_DIR . '/05-add-custom-field-for-posts-only/example.php';
+    require_once MENU_TESTS_PLUGIN_DIR . '/06-add-custom-fields-for-certain-location/example.php';
